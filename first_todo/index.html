@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+    <script src="script/angular.min.js"></script>
+</head>
+<style>
+    body{
+        width: 960px;
+        margin: 50px auto;
+        background-color: darkslategrey;
+    }
+    label{
+        font-size: 50px;
+    }
+    input{
+        width: 100%;
+        height: 30px;
+        float: left;
+        border-radius: 25px;
+    }
+    h1{
+        color: wheat;
+        font-family: sans-serif;
+        text-align: center;
+    }
+    p{
+        font-size: 50px;
+        color: white;
+    }
+    
+input button{
+    width: 50%;
+}
+</style>
+<body>
+<div>
+
+    <!--<label>What's In Your Mind!</label>-->
+
+    <!--<input type="text" placeholder="Just Do it" ng-model="yourName">-->
+
+            <!--<h1>{{yourName}}</h1>-->
+
+        <!--<script type="text/javascript">-->
+
+            <!--function HelloWorld($scope){-->
+
+                <!--$scope.Hello="Hello World";-->
+            <!--}-->
+        <!--</script>-->
+
+
+<div ng-controller="crt1">
+    <input type="text" ng-model="newItem">
+
+    <input type="button" ng-click="additme()" value="Button">
+
+    <p>{{name}}</p>
+    <ul>
+        <li ng-repeat="item in items">{{item.title}}</li>
+
+    </ul>
+</div>
+
+<!--<div ng-controller="crt2">-->
+    <!--<input type="text" ng-model="name">-->
+
+    <!--<p>{{name}}</p>-->
+<!--</div>-->
+
+<script>
+    function crt1($scope){
+        $scope.items = [
+            {title: 'lorem'},
+            {title: 'ipsom'},
+            {title: 'dollar'}
+        ];
+
+        $scope.additme=function(){
+            console.log('hi');
+
+            if($scope.newItem === undefined){
+                return;
+            }
+            $scope.items.push({title: $scope.newItem});
+            $scope.newItem =  undefined;
+        };
+
+
+    }
+//    function crt2($scope){
+//        $scope.name = 'Angular';
+//    }
+
+
+</script>
+
+</div>
+</body>
+</html>

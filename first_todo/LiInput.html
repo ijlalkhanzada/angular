@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Li Input</title>
+    <script src="script/angular.min.js"></script>
+
+</head>
+<style>
+    body{
+        width: 960px;
+        margin: 50px auto;
+        background-color: darkslategrey;
+    }
+    label{
+        font-size: 50px;
+    }
+
+</style>
+<body>
+<div ng-controller="crt1">
+    <input type="text" ng-model="newItem">
+
+    <input type="button" ng-click="additme()" value="Button">
+
+    <p>{{name}}</p>
+    <ul>
+        <li ng-repeat="item in items">{{item.title}}</li>
+
+    </ul>
+</div>
+<script>
+    function crt1($scope){
+        $scope.items = [
+            {title: 'lorem'},
+            {title: 'ipsom'},
+            {title: 'dollar'}
+        ];
+
+        $scope.additme=function(){
+            console.log('hi');
+
+            if($scope.newItem === undefined){
+                return;
+            }
+            $scope.items.push({title: $scope.newItem});
+            $scope.newItem =  undefined;
+        };
+
+
+    }
+
+
+</script>
+
+</body>
+</html>

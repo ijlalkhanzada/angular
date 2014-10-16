@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Input Text</title>
+    <script src="script/angular.min.js"></script>
+
+</head>
+<style>
+    body{
+        width: 960px;
+        margin: 50px auto;
+        background-color: darkslategrey;
+    }
+    label{
+        width: 100%;
+        font-size: 50px;
+        float: right;
+        margin: 0 -19%;
+    }
+
+    input{
+    width: 100%;
+    height: 30px;
+    float: left;
+    border-radius: 25px;
+    }
+    h1{
+        color: wheat;
+        font-family: sans-serif;
+        text-align: center;
+        float: left;
+    }
+</style>
+<body>
+<label>What's In Your Mind!</label>
+
+<input type="text" placeholder="Just Do it" ng-model="yourName">
+
+    <h1>{{yourName}}</h1>
+</body>
+</html>
