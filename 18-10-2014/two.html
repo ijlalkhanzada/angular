@@ -2,90 +2,74 @@
 <html ng-app = "showHideDemo">
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>Two</title>
     <script src="../script/angular.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/_bootstrap.scss">
     <link rel="stylesheet" type="text/css" href="../css/semantic.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
 <div class="wrapper">
-    <div id="border">
-        <div class="dom2" ng-controller="todo">
-            <form ng-submit = "additme()">
-                <input type="text" ng-model="newItem" required>
-                <input type="submit" value="Submit" >
-                <p>{{name}}</p>
-            </form>
-
+        <h1>Chat Box In Angularjs</h1>
+    <div id="border" class="ui piled feed green segment">
+        <div class="dom2" ng-controller="todo" >
             <ul class="libs">
-                <li ng-repeat="lib in libs">
-                    <span><button type="button" ng-click="removeItem()">Delete</button> </span>
-                    {{lib.name}}
+                <div class="ui ribbon green label">IJLAL</div>
+                <li ng-repeat="message in chat">
+                    <span><i class="comment outline icon"></i></span>
+                    {{message.sender}} : {{message.text}}
                 </li>
             </ul>
+            <form ng-submit="additme()">
+                <div class="ui left icon input">
+                    <input type="text" ng-model="text" class="i_n" placeholder="Send Message" required>
+                    <i class="users green icon"></i>
+                </div>
+            </form>
         </div>
     </div>
-    <div class="border1">
+    <div id="border1" class="ui piled feed green segment">
         <div class="dom3" ng-controller="todo1">
-            <form ng-submit = "additme()">
-
-                <input type="text" ng-model="oldItem" required>
-                <input type="submit" value="Submit" >
-
-
-                <p>{{name}}</p>
-            </form>
-
             <ul class="libs">
-                <li ng-repeat="lib in libs">
-                    <span><button type="button" ng-click="removeItem()">Delete</button></span>
-                    {{lib.name}}
+                <div class="ui ribbon green label">KHANZADA</div>
+                <li ng-repeat="message in chat">
+                    <span><i class="comment outline icon"></i></span>
+                    {{message.sender}} : {{message.text}}
                 </li>
             </ul>
+            <form ng-submit = "additme()">
+                <div class="ui left icon input">
+                    <input type="text" ng-model="text" class="i_n" placeholder="Send Message" required>
+                    <i class="users green icon"></i>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>
 
+
 <script>
     angular.module('showHideDemo',[])
-            .controller('todo',function($scope){
-                $scope.libs = [
-                    {name: 'AngularJS', checked: false},
-                    {name: 'Backnone', checked: false},
-                    {name: 'Knockout', checked: false},
-                    {name: 'Jquery', checked: false},
-                    {name: 'MooTools', checked: false},
-
+            .controller('todo',function($scope, $rootScope){
+                $rootScope.chat = [
+//
                 ];
-                $scope.additme=function(){
-                    $scope.libs.push({name: $scope.newItem});
-                    if($scope.newItem === undefined){
-                        return;
-                    }
-                    $scope.newItem =  undefined;
-
+                $scope.additme = function(){
+                    $scope.chat.push({sender: 'IJLAL',  text: $scope.text});
+                    $scope.text =  undefined;
                 };
-                $scope.removeItem = function(index) {
-                    $scope.libs.splice(index, 1);
-                }
             })
-            .controller('todo1',function($scope){
-                $scope.libs = [
-                    {name: 'AngularJS', checked: false},
-                    {name: 'Backnone', checked: false},
-                    {name: 'Knockout', checked: false},
-                    {name: 'Jquery', checked: false},
-                    {name: 'MooTools', checked: false},
 
-                ];
+            .controller('todo1',function($scope){
                 $scope.additme=function(){
-                    $scope.libs.push({name: $scope.oldItem});
-                    $scope.oldItem =  undefined;
+                    $scope.chat.push({sender: 'KHANZADA',text: $scope.text});
+                    $scope.text =  undefined;
                 };
-                $scope.removeItem = function(index) {
-                    $scope.libs.splice(index, 1);
-                }
             });
 </script>
 </body>
