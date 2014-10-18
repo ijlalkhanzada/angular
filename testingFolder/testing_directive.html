@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../script/angular.min.js"></script>
+    <link rel="stylesheet" href="../css/_bootstrap.scss">
+</head>
+<style>
+    ul li{
+        list-style: none;
+    }
+</style>
+<body ng-controller="crt1">
+
+<input type="checkbox"  ng-model="Name">
+
+<input type="text" ng-model="name" >
+
+<h1>{{Name}}</h1>
+
+<ul>
+    <li ng-repeat="item in items" ng-show="item.type">
+
+        {{item.type === 'm' ? "Ijlal":'Khanzada';}}
+
+    </li>
+</ul>
+<script>
+    function crt1($scope){
+        $scope.items = [
+            {type : 'm'},
+            {type : 'f'}
+        ];
+    }
+
+</script>
+</body>
+</html>

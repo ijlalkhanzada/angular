@@ -3,17 +3,20 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Li Input</title>
-    <script src="script/angular.min.js"></script>
-
+    <script src="../script/angular.min.js"></script>
 </head>
 <style>
     body{
-        width: 960px;
-        margin: 50px auto;
-        background-color: darkslategrey;
+            width: 960px;
+             margin: 50px auto;
+            background-color: darkslategrey;
     }
     label{
         font-size: 50px;
+    }
+    li{
+        list-style: none;
+        color: white;
     }
 
 </style>
@@ -24,34 +27,32 @@
     <input type="button" ng-click="additme()" value="Button">
 
     <p>{{name}}</p>
-    <ul>
-        <li ng-repeat="item in items">{{item.title}}</li>
 
+    <ul class="unstyled">
+        <li ng-repeat="item in items">
+            <input type="checkbox" ng-model="todo.done">
+            <span class="done-{{item.done}}">{{item.title}}</span>
+        </li>
     </ul>
+
 </div>
 <script>
     function crt1($scope){
         $scope.items = [
-            {title: 'lorem'},
-            {title: 'ipsom'},
-            {title: 'dollar'}
-        ];
-
+            {title: 'lorem', done: false},
+            {title: 'ipsom', done: false},
+            {title: 'dollar', done: false}
+                              ];
         $scope.additme=function(){
             console.log('hi');
-
             if($scope.newItem === undefined){
                 return;
             }
-            $scope.items.push({title: $scope.newItem});
+            $scope.items.push({title: $scope.newItem, done:false});
+
             $scope.newItem =  undefined;
         };
-
-
     }
-
-
 </script>
-
 </body>
 </html>

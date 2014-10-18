@@ -1,0 +1,26 @@
+.ts{
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent
+    display: block;
+    margin-top: 0em;
+    alignment-adjust: central;
+
+}
+#s_bar{
+    position: absolute;
+    margin-left: 72%;
+    margin-top: 0.6%;
+    width: 10%;
+    color: #fff !important;
+    z-index: 10000;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 14px;
+    transition: width 0.5s ease-out
+}
+div{
+    width: 100%;
+    height: 50px;
+}
