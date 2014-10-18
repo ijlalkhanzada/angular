@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app = "showHideDemo">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../script/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/_bootstrap.scss">
+    <link rel="stylesheet" type="text/css" href="../css/semantic.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body class="well ng-scope" ng-controller="todo">
+<div id="border">
+<div class="dom">
+<label ng-repeat="lib in libs">
+    <input type="checkbox" ng-model="lib.checked">
+    {{lib.name}}
+</label>
+    <ul class="libs">
+        <li ng-repeat="lib in libs" ng-show="lib.checked">
+            <span><button type="button" ng-click="removeItem()">Delete</button> </span>
+            {{lib.name}}
+        </li>
+    </ul>
+  </div>
+</div>
+</div>
+<script>
+     angular.module('showHideDemo',[])
+    .controller('todo',function($scope){
+        $scope.libs = [
+            {name: 'AngularJS', checked: false},
+            {name: 'Backnone', checked: false},
+            {name: 'Knockout', checked: false},
+            {name: 'Jquery', checked: false},
+            {name: 'MooTools', checked: false},
+
+        ];
+                 $scope.removeItem = function(index) {
+                     $scope.libs.splice(index, 1);
+                 }
+    });
+</script>
+</body>
+</html>
