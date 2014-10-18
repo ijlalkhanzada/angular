@@ -20,7 +20,7 @@
 <h1>{{Name}}</h1>
 
 <ul>
-    <li ng-repeat="item in items" >
+    <li ng-repeat="item in items" ng-show="item.type" >
 
         {{item.type === 'm' ? "Ijlal":'Khanzada';}}
 

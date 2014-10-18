@@ -48,45 +48,45 @@
 </div>
 
 <script>
-     angular.module('showHideDemo',[])
-    .controller('todo',function($scope){
-        $scope.libs = [
-            {name: 'AngularJS', checked: false},
-            {name: 'Backnone', checked: false},
-            {name: 'Knockout', checked: false},
-            {name: 'Jquery', checked: false},
-            {name: 'MooTools', checked: false},
+    angular.module('showHideDemo',[])
+            .controller('todo',function($scope){
+                $scope.libs = [
+                    {name: 'AngularJS', checked: false},
+                    {name: 'Backnone', checked: false},
+                    {name: 'Knockout', checked: false},
+                    {name: 'Jquery', checked: false},
+                    {name: 'MooTools', checked: false},
 
-        ];
-                 $scope.additme=function(){
-                     $scope.libs.push({name: $scope.newItem});
-                      if($scope.newItem === undefined){
-                         return;
-                 }
-                     $scope.newItem =  undefined;
+                ];
+                $scope.additme=function(){
+                    $scope.libs.push({name: $scope.newItem});
+                    if($scope.newItem === undefined){
+                        return;
+                    }
+                    $scope.newItem =  undefined;
 
-                 };
+                };
                 $scope.removeItem = function(index) {
-                     $scope.libs.splice(index, 1);
-                 }
-    })
-    .controller('todo1',function($scope){
-        $scope.libs = [
-            {name: 'AngularJS', checked: false},
-            {name: 'Backnone', checked: false},
-            {name: 'Knockout', checked: false},
-            {name: 'Jquery', checked: false},
-            {name: 'MooTools', checked: false},
+                    $scope.libs.splice(index, 1);
+                }
+            })
+            .controller('todo1',function($scope){
+                $scope.libs = [
+                    {name: 'AngularJS', checked: false},
+                    {name: 'Backnone', checked: false},
+                    {name: 'Knockout', checked: false},
+                    {name: 'Jquery', checked: false},
+                    {name: 'MooTools', checked: false},
 
-        ];
-                 $scope.additme=function(){
-                     $scope.libs.push({name: $scope.oldItem});
-                     $scope.oldItem =  undefined;
-                 };
-                 $scope.removeItem = function(index) {
-                     $scope.libs.splice(index, 1);
-                 }
-    });
+                ];
+                $scope.additme=function(){
+                    $scope.libs.push({name: $scope.oldItem});
+                    $scope.oldItem =  undefined;
+                };
+                $scope.removeItem = function(index) {
+                    $scope.libs.splice(index, 1);
+                }
+            });
 </script>
 </body>
 </html>
