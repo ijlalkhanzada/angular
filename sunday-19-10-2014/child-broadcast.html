@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="showHideDemo">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>BroadCast</title>
+    <script src="../script/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/_bootstrap.scss">
+    <link rel="stylesheet" type="text/css" href="../css/semantic.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div  ng-controller="parentCtrl">
+    <div ng-controller="childCtrl">
+        <b>Parent Event:</b>
+        <b>Child Event:</b>
+
+    </div>
+</div>
+<script>
+    angular.module('showHideDemo',[])
+            .controller('parentCtrl', function ($scope) {
+                $scope.$on('EventFromChild',function(event, data){
+                    console.log(data)
+
+                })
+            })
+            .controller('childCtrl',function ($scope) {
+                $scope.$emit('EventFromChild', 'ijlal');
+                $scope.$broadcast('EventFromChild', data)
+
+
+
+            });
+</script>
+</body>
+</html>

@@ -2,6 +2,7 @@ body{
     width: 100%;
     float: left;
     margin: 0 auto;
+    background-color: #02e6ff;
 
 }
 .wrapper{
@@ -13,16 +14,21 @@ body{
     float: left;
     border: 1px solid;
     background-color: #f5f5f5;
-    margin: 50px;
-
+    margin: 5px;
 }
 #border1{
     width: 32%;
     float: left;
     border: 1px solid;
     background-color: #f5f5f5;
-    margin: 50px;
+    margin: 5px;
 }
+#border2{
+    width: 32%;
+    float: left;
+    border: 1px solid;
+    background-color: #f5f5f5;
+    margin: 5px;}
 .dom{
     width:98% ;
     float: left;
@@ -79,5 +85,5 @@ h1{
     text-align: center;
     border: 1px solid #0e0a0e;
     font-family: 'Lobster', cursive;.
-    
+
 }

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html ng-app = "showHideDemo">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>BroadCast</title>
+    <script src="../script/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/_bootstrap.scss">
+    <link rel="stylesheet" type="text/css" href="../css/semantic.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div class="well ng-scope" ng-controller="todo1">
+    <button ng-click="messageToDo1()">Crt1</button>
+</div>
+
+<div class="well ng-scope" ng-controller="todo2">
+    <button ng-click="messageToDo2()">Crt2</button>
+</div>
+<div class="well ng-scope" ng-controller="todo3">
+    <button ng-click="messageToDo3()">Crt3</button>
+</div>
+<script>
+    angular.module('showHideDemo',[])
+            .run(function($rootScope){
+                $rootScope.$on('todoOne', function(event, message){
+                    $rootScope.$broadcast('broadCastTodo1', message)
+                });
+                $rootScope.$on('todoTwo', function(event, message){
+                    $rootScope.$broadcast('broadCastTodo2', message)
+                });
+                $rootScope.$on('todoThree', function(event, message){
+                    $rootScope.$broadcast('broadCastTodo3', message)
+                });
+            })
+            .controller('todo1', function($scope){
+                $scope.additem = function(){
+                    console.log('hi');
+                };
+                $scope.messageToDo1 = function(){
+                    $scope.$emit('todoOne', {a:'todo1'})
+                };
+                $scope.$on('broadCastTodo1', function (event, message) {
+                    console.log(message.a,'ijlal')
+                });
+                $scope.$on('broadCastTodo2', function (event, message) {
+                    console.log(message.a ,'khanzada')
+                })
+                $scope.$on('broadCastTodo3', function (event, message) {
+                    console.log(message.a ,'Qadri')
+                })
+            })
+            .controller('todo2',function($scope){
+                $scope.additem = function(){
+                    console.log('By');
+                };
+                $scope.messageToDo2 = function(){
+                    $scope.$emit('todoTwo',{a:'todo2'})
+                };
+                $scope.$on('broadCastTodo1', function(event, message){
+                    console.log(message.a,'ijlal')
+                });
+                $scope.$on('broadCastTodo2', function(event, message){
+                    console.log(message.a , 'khanzad')
+                });
+                $scope.$on('broadCastTodo3', function(event, message){
+                    console.log(message.a , 'Qadri')
+                })
+            })
+            .controller('todo3',function($scope){
+                $scope.additem = function(){
+                    console.log('By');
+                };
+                $scope.messageToDo3 = function(){
+                    $scope.$emit('todoThree',{a:'todo3'})
+                };
+                $scope.$on('broadCastTodo1', function(event, message){
+                    console.log(message.a,'ijlal')
+                });
+                $scope.$on('broadCastTodo2', function(event, message){
+                    console.log(message.a , 'khanzada')
+                })
+                $scope.$on('broadCastTodo3', function(event, message){
+                    console.log(message.a , 'Qadri')
+                })
+            });
+</script>
+</body>
+</html>

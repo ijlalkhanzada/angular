@@ -2,7 +2,7 @@
 <html ng-app = "showHideDemo">
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Two</title>
+    <title>Broadcast</title>
     <script src="../script/angular.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/_bootstrap.scss">
     <link rel="stylesheet" type="text/css" href="../css/semantic.css">
@@ -10,13 +10,12 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
-
 </head>
 <body>
 <div class="wrapper">
-        <h1>Chat Box In Angularjs</h1>
+    <h1>Chat Box In Angularjs</h1>
     <div id="border" class="ui piled feed green segment">
-        <div class="dom2" ng-controller="todo" >
+        <div class="dom2" ng-controller="todo1" >
             <ul class="libs">
                 <div class="ui ribbon green label">IJLAL</div>
                 <li ng-repeat="message in chat">
@@ -24,7 +23,7 @@
                     {{message.sender}} : {{message.text}}
                 </li>
             </ul>
-            <form ng-submit="additme()">
+            <form ng-submit="messageToDo1()">
                 <div class="ui left icon input">
                     <input type="text" ng-model="text" class="i_n" placeholder="Send Message" required>
                     <i class="users green icon"></i>
@@ -33,7 +32,7 @@
         </div>
     </div>
     <div id="border1" class="ui piled feed green segment">
-        <div class="dom3" ng-controller="todo1">
+        <div class="dom3" ng-controller="todo2">
             <ul class="libs">
                 <div class="ui ribbon green label">KHANZADA</div>
                 <li ng-repeat="message in chat">
@@ -41,36 +40,109 @@
                     {{message.sender}} : {{message.text}}
                 </li>
             </ul>
-            <form ng-submit = "additme()">
+            <form ng-submit="messageToDo2()">
                 <div class="ui left icon input">
                     <input type="text" ng-model="text" class="i_n" placeholder="Send Message" required>
                     <i class="users green icon"></i>
                 </div>
             </form>
-
+        </div>
+    </div>
+    <div id="border2" class="ui piled feed green segment">
+        <div class="dom3" ng-controller="todo3">
+            <ul class="libs">
+                <div class="ui ribbon green label">QADRI</div>
+                <li ng-repeat="message in chat">
+                    <span><i class="comment outline icon"></i></span>
+                    {{message.sender}} : {{message.text}}
+                </li>
+            </ul>
+            <form ng-submit="messageToDo2()">
+                <div class="ui left icon input">
+                    <input type="text" ng-model="text" class="i_n" placeholder="Send Message" required>
+                    <i class="users green icon"></i>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
-
 <script>
     angular.module('showHideDemo',[])
-            .controller('todo',function($scope, $rootScope){
-                $rootScope.chat = [
-//
-                ];
-                $scope.additme = function(){
-                    $scope.chat.push({sender: 'IJLAL',  text: $scope.text});
-                    $scope.text =  undefined;
-                };
+            .run(function($rootScope){
+                $rootScope.$on('todoOne', function(event, message){
+                    $rootScope.$broadcast('broadCastTodo1', message)
+                });
+                $rootScope.$on('todoTwo', function(event, message){
+                    $rootScope.$broadcast('broadCastTodo2', message)
+                });
+                $rootScope.$on('todoThree', function(event, message){
+                    $rootScope.$broadcast('broadCastTodo3', message)
+                });
             })
-
             .controller('todo1',function($scope){
-                $scope.additme=function(){
-                    $scope.chat.push({sender: 'KHANZADA',text: $scope.text});
-                    $scope.text =  undefined;
+                $scope.chat = [
+                ];
+                $scope.messageToDo1 = function(){
+                    $scope.$emit('todoOne',{text:$scope.text})
                 };
-            });
+                $scope.$on('broadCastTodo1', function(event, message) {
+                    console.log(message.text);
+                    $scope.chat.push({sender: 'Ijlal',  text: message.text});
+                    $scope.text =  '';
+                });
+                $scope.$on('broadCastTodo2', function (event, message) {
+                    $scope.chat.push({sender: 'Khanzada',  text: message.text});
+                    $scope.text =  '';
+                });
+                $scope.$on('broadCastTodo3', function (event, message) {
+                    $scope.chat.push({sender: 'QADRI',  text: message.text});
+                    $scope.text =  '';
+                })
+            })
+            .controller('todo2',function($scope){
+                $scope.chat = [
+                ];
+                $scope.messageToDo2 = function(){
+                    $scope.$emit('todoTwo',{text:$scope.text})
+                };
+                $scope.$on('broadCastTodo1', function(event, message) {
+                    console.log(message.text);
+                    $scope.chat.push({sender: 'Ijlal',  text: message.text});
+                    $scope.text =  '';
+                });
+                $scope.$on('broadCastTodo2', function(event, message) {
+                    console.log(message.text);
+                    $scope.chat.push({sender: 'Khanzada',  text: message.text});
+                    $scope.text =  '';
+                });
+                $scope.$on('broadCastTodo3', function (event, message) {
+                    $scope.chat.push({sender: 'QADRI',  text: message.text});
+                    $scope.text =  '';
+                })
+            })
+            .controller('todo3',function($scope){
+                $scope.chat = [
+                ];
+                $scope.messageToDo2 = function(){
+                    $scope.$emit('todoThree',{text:$scope.text})
+                };
+                $scope.$on('broadCastTodo1', function(event, message) {
+                    console.log(message.text);
+                    $scope.chat.push({sender: 'Ijlal',  text: message.text});
+                    $scope.text =  '';
+                });
+                $scope.$on('broadCastTodo2', function(event, message) {
+                    console.log(message.text);
+                    $scope.chat.push({sender: 'Khanzada',  text: message.text});
+                    $scope.text =  '';
+                });
+                $scope.$on('broadCastTodo3', function(event, message) {
+                    console.log(message.text);
+                    $scope.chat.push({sender: 'QADRI',  text: message.text});
+                    $scope.text =  '';
+                })
+
+            })
 </script>
 </body>
 </html>
